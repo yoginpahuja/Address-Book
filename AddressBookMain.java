@@ -27,7 +27,7 @@ class AddressBookMain{
 
     // UC3 - Edit functionality
     public static void editFunction(Scanner scn){
-        System.out.println("Enter name (First+Last) of the person: ");
+        System.out.println("Enter first name of the person: ");
         String name = scn.next();
         contactDetail.get(name).displayInformation();
         Integer condition;
@@ -65,7 +65,23 @@ class AddressBookMain{
                 System.out.println("Enter new email");
                 String email = scn.next();
                 contactDetail.get(name).editEmail(email);;
+            }else{
+                System.out.println("you have entered wrong key");
             }
+        }
+    }
+
+    // UC4 - Delete Functionality
+    public static void deleteFunction(Scanner scn){
+        System.out.println("Enter first name of the person: ");
+        String name = scn.next();
+        contactDetail.remove(name);
+        System.out.println("Deleted Successfuly");
+    }
+
+    public static void diplayAllContact(){
+        for( String keys: contactDetail.keySet()){
+            contactDetail.get(keys).displayInformation();
         }
     }
 
@@ -78,6 +94,8 @@ class AddressBookMain{
             System.out.println("Enter Integer for Different operations");
             System.out.println("1 : for Adding new Detail");
             System.out.println("2 : for edit existing Detail");
+            System.out.println("3 : for delete existing Detail");
+            System.out.println("4: for diplay all contact information");
             System.out.println("0 : for Exit");
             operation = scn.nextInt();
             if(operation == 0){
@@ -87,11 +105,13 @@ class AddressBookMain{
                 cnt++;
             }else if(operation == 2){
                 editFunction(scn);
+            }else if(operation == 3){
+                deleteFunction(scn);
+            }else if(operation == 4){
+                diplayAllContact();
+            }else{
+                System.out.println("you have entered wrong key");
             }
-        }
-
-        for( String keys: contactDetail.keySet()){
-            contactDetail.get(keys).displayInformation();
         }
 
         scn.close();
